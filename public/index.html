@@ -1,95 +1,141 @@
+Certainly! Below is a production-ready `public/index.html` file for a calculator application built using the MERN stack. This template includes proper structure, imports, and placeholders for integrating with React.
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="A simple and efficient todo list application to manage your daily tasks"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Todo List - Manage Your Tasks</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MERN Stack Calculator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-      }
-
-      code {
-        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-          monospace;
-      }
-
-      #root {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .loading-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .spinner {
-        width: 50px;
-        height: 50px;
-        border: 4px solid rgba(255, 255, 255, 0.3);
-        border-top-color: #ffffff;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
         }
-      }
-
-      .loading-text {
-        color: #ffffff;
-        font-size: 18px;
-        font-weight: 500;
-      }
-
-      noscript {
-        display: block;
-        padding: 20px;
-        background-color: #ff6b6b;
-        color: white;
-        text-align: center;
-        font-weight: 600;
-      }
+        #root {
+            width: 300px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: white;
+            border-radius: 8px;
+        }
+       .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+       .calculator-button {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+       .calculator-button:active {
+            background-color: #e0e0e0;
+        }
+       .output {
+            grid-column: span 4;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 1.5em;
+            text-align: right;
+            border-radius: 5px;
+        }
     </style>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this application.</noscript>
-    <div id="root">
-      <div class="loading-container">
-        <div class="spinner"></div>
-        <div class="loading-text">Loading Todo App...</div>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="%PUBLIC_URL%/bundle.js"></script>
+</body>
+</html>
+
+### Explanation:
+1. **Meta Tags**: 
+   - Set character encoding to UTF-8.
+   - Set viewport for responsive design.
+   - Include X-UA-Compatible for IE compatibility.
+
+2. **Title**: 
+   - Set the title of the webpage to "MERN Stack Calculator".
+
+3. **Google Fonts**: 
+   - Import the Roboto font for a modern look.
+
+4. **Styles**: 
+   - Basic styles for the body to center the calculator.
+   - Styles for the calculator grid and buttons.
+  
+5. **Root Div**: 
+   - `<div id="root"></div>` is where the React application will mount.
+
+6. **Script Tag**: 
+   - Include the bundled JavaScript file (`bundle.js`) which will be generated by your build process.
+
+### Next Steps:
+To make this a complete functional calculator, you would need to create the React components and integrate them with this HTML template. Here's a brief outline of what those components might look like:
+
+// src/App.js
+import React, { useState } from'react';
+import './App.css';
+
+const App = () => {
+  const [input, setInput] = useState('');
+
+  const handleClick = (value) => {
+    setInput(input + value);
+  };
+
+  const calculateResult = () => {
+    try {
+      setInput(eval(input).toString());
+    } catch {
+      setInput('Error');
+    }
+  };
+
+  const clearInput = () => {
+    setInput('');
+  };
+
+  return (
+    <div className="calculator">
+      <div className="output">{input || '0'}</div>
+      <div className="calculator-grid">
+        {['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', '+'].map((value) => (
+          <button 
+            key={value} 
+            className="calculator-button" 
+            onClick={() => {
+              if (value === '=') calculateResult();
+              else if (value === 'C') clearInput();
+              else handleClick(value);
+            }}
+          >
+            {value}
+          </button>
+        ))}
       </div>
     </div>
-  </body>
-</html>
+  );
+};
+
+export default App;
+
+// src/index.js
+import React from'react';
+import ReactDOM from'react-dom';
+import App from './App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+### Build Process:
+Ensure you have a build process set up (e.g., using Webpack or Create React App) to bundle your JavaScript into `bundle.js`.
