@@ -1,40 +1,76 @@
+Certainly! Below is a complete `package.json` file for a frontend application built with React as part of a MERN stack project. This file includes all necessary dependencies, scripts, and metadata to ensure it is production-ready.
+
 {
-  "name": "mern-todo-frontend",
+  "name": "app-frontend",
   "version": "1.0.0",
-  "private": true,
-  "description": "MERN Stack Todo List Application - Frontend",
-  "author": "Your Name",
+  "description": "Frontend for a calculator application built using the MERN stack.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/app-frontend.git"
+  },
+  "keywords": [
+    "react",
+    "mern",
+    "calculator",
+    "frontend"
+  ],
+  "author": "Your Name <your.email@example.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
-    "test": "vitest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "axios": "^1.6.2",
-    "react-icons": "^4.12.0",
-    "react-toastify": "^9.1.3"
+    "react-router-dom": "^6.11.2",
+    "axios": "^1.3.4"
   },
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react": "^7.33.2",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.36.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "prettier": "^3.1.1",
-    "vitest": "^1.0.4"
+    "babel-eslint": "^10.1.0",
+    "react-scripts": "5.0.1"
   },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "airbnb",
+      "plugin:react/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
+    },
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+    }
   },
   "browserslist": {
     "production": [
@@ -49,3 +85,23 @@
     ]
   }
 }
+
+### Explanation:
+- **name**: The name of your project.
+- **version**: The current version of your project.
+- **description**: A short description of your project.
+- **repository**: The URL to your project's repository.
+- **keywords**: Keywords related to your project.
+- **author**: The author of the project.
+- **license**: The license under which your project is distributed.
+- **scripts**: Common scripts for running and building your project.
+  - `start`: Starts the development server.
+  - `build`: Builds the app for production.
+  - `test`: Runs the test suite.
+  - `eject`: Allows you to eject from React Scripts and customize the build setup.
+  - `lint`: Lints your source code.
+  - `lint:fix`: Automatically fixes linting errors where possible.
+- **dependencies**: Libraries required for your application to run.
+- **devDependencies**: Development-specific libraries, such as testing libraries and linters.
+- **eslintConfig**: ESLint configuration to ensure code quality and consistency.
+- **browserslist**: Specifies the target browsers for your project.
